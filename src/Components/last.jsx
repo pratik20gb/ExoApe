@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+
 function Last() {
     return (
         <div className='w-full bg-black text-white py-20' >

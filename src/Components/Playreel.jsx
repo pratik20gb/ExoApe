@@ -8,46 +8,46 @@ function Playreel() {
     const videodiv = useRef(null);
     const play = useRef(null);
     const reel = useRef(null);
-    useEffect(()=>{
+    useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         var tl = gsap.timeline({
-            scrollTrigger:{
-                trigger:parent.current,
-                top:"0 0",
-                pin:true,
-                scrub:1,
-                
+            scrollTrigger: {
+                trigger: parent.current,
+                start: "top top",
+                end: "bottom top",
+                pin: true,
+                scrub: 1,
             },
         })
-       tl
-        .to(videodiv.current, {
-            width: "105%",
-            height: "105%",
-            duration: 1.5,
-            ease: "power2.inOut"
-        })
-       .to(videodiv.current,{
-           
-            width:"105%",
-            height:"105%",
-            ease:"Power4.easeInOut"
-
-        })
-        tl.to(play.current,{
-            x:"100%",
-           
-            ease:"Power4.easeInOut"
-        },'a')
-        tl.to(reel.current,{
-            x:"-100%",
-            
-            ease:"Power4.easeInOut"
-        },'a')
+        tl
+            .to(videodiv.current, {
+                width: "100%",
+                height: "100%",
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            .to(play.current, {
+                x: "-100%",
+                opacity: 0,
+                duration: 2,
+            }, "-=1")
+            .to(reel.current, {
+                x: "100%",
+                opacity: 0,
+                duration: 2,
+            }, "<")
+            .to(videodiv.current, {
+                width: "95%",
+                height: "95%",
+                duration: 2,
+            })
+        // ... rest of the animation
     })
+
     return (
-        <div ref={parent} className=' w-full relative h-screen bg-black overflow-hidden'>
-            <div ref={videodiv} className='w-40 sm:w-96 aspect-video     absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-            <video autoPlay muted loop src="https://player.vimeo.com/progressive_redirect/playback/914803778/rendition/1080p/file.mp4?loc=external&log_user=0&signature=5344c0e4fea63ca54bb433621ca0be7b9470b475583fa68b26de2b6e380a390a" className=' w-full h-full absolute top-1/2 scale-[1.2] left-1/2 -translate-x-1/2 -translate-y-1/2'></video>
+        <div ref={parent} className='w-full relative h-screen bg-black overflow-hidden'>
+            <div ref={videodiv} className='w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                <video autoPlay muted loop src="https://player.vimeo.com/progressive_redirect/playback/914803778/rendition/1080p/file.mp4?loc=external&log_user=0&signature=5344c0e4fea63ca54bb433621ca0be7b9470b475583fa68b26de2b6e380a390a" className='w-full h-full object-cover'></video>
             </div>
             <div className='  overlay absolute  flex flex-col justify-between  w-full h-full   text-white py-20'>
                 <div className='flex items-center justify-center  gap-3 w-full  '>
